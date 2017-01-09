@@ -1,0 +1,6 @@
+.vs
+src/OdeToFood/bin
+src/OdeToFood/obj
+node_modules
+
+
