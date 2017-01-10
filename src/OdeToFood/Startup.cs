@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 
 namespace OdeToFood
 {
@@ -62,7 +63,14 @@ namespace OdeToFood
                 Path = "/welcome"
             });
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(ConfigureRoutes);
+
+            app.Run(ctx => ctx.Response.WriteAsync("Not found"));
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
