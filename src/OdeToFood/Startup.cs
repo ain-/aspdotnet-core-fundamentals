@@ -44,6 +44,14 @@ namespace OdeToFood
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = context => context.Response.WriteAsync("Opps!")
+                });
+                //app.UseExceptionHandler("/error");
+            }
 
             app.UseWelcomePage(new WelcomePageOptions
             {
@@ -52,6 +60,7 @@ namespace OdeToFood
 
             app.Run(async (context) =>
             {
+                throw new Exception("x");
                 var message = greeter.GetGreeting();
                 await context.Response.WriteAsync(message);
             });
