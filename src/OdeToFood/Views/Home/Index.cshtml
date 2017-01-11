@@ -2,18 +2,21 @@
 @{ 
     ViewBag.Title = "Home";
 }
+
 <h1>Welcome!</h1>
 <table>
     @foreach (var restaurant in Model.Restaurants)
     {
         <tr>
             <td>
-                @Html.ActionLink("View", "Details", new { id = restaurant.Id })
+                <a asp-action="Details" asp-route-id="@restaurant.Id" >Detail</a>
             </td>
             <td>@restaurant.Name</td>
         </tr>
     }
 </table>
+
+<a asp-action="Create">Create</a>
 
 @section footer {
     <h3>@Model.CurrentMessage</h3>
