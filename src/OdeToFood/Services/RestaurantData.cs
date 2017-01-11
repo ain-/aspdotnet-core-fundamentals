@@ -31,7 +31,7 @@ namespace OdeToFood.Services
 
         public Restaurant Get(int id)
         {
-            return _context.Restaurants.FirstOrDefault(r => r.Id == d);
+            return _context.Restaurants.FirstOrDefault(r => r.Id == id);
         }
 
         public IEnumerable<Restaurant> GetAll()
