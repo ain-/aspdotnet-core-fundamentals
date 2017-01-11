@@ -42,15 +42,19 @@ namespace OdeToFood.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(RestaurantEditViewModel model)
         {
-            var newRestaurant = new Restaurant();
-            newRestaurant.Cuisine = model.Cuisine;
-            newRestaurant.Name = model.Name;
+            if (ModelState.IsValid)
+            {
+                var newRestaurant = new Restaurant();
+                newRestaurant.Cuisine = model.Cuisine;
+                newRestaurant.Name = model.Name;
 
-            newRestaurant = _restaurantData.Add(newRestaurant);
-
-            return RedirectToAction("Details", new { id = newRestaurant.Id });
+                newRestaurant = _restaurantData.Add(newRestaurant);
+                return RedirectToAction("Details", new { id = newRestaurant.Id });
+            }
+            return View();
         }
 
     }
