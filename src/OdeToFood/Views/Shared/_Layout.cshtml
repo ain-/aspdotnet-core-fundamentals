@@ -11,6 +11,7 @@
     </div>
     <div>
         @RenderSection("footer", required: false)
+        @await Component.InvokeAsync("Greeting")
     </div>
 </body>
 </html>
