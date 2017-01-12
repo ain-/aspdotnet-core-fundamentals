@@ -13,10 +13,10 @@ namespace OdeToFood.ViewComponents
             _greeter = greeter;
         }
 
-        public IViewComponentResult Invoke()
+        public Task<IViewComponentResult> InvokeAsync()
         {
             var model = _greeter.GetGreeting();
-            return View("Default", model);
+            return Task.FromResult<IViewComponentResult>(View("Default", model));
         }
 
     }
