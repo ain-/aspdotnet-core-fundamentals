@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using OdeToFood.Services;
 using OdeToFood.Entitities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OdeToFood
 {
@@ -35,6 +36,8 @@ namespace OdeToFood
             services.AddDbContext<OdeToFoodDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("OdeToFood")));
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<OdeToFoodDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +63,8 @@ namespace OdeToFood
             app.UseFileServer();
             //app.UseDefaultFiles();
             //app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseWelcomePage(new WelcomePageOptions
             {
