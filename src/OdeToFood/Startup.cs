@@ -62,6 +62,7 @@ namespace OdeToFood
 
             app.UseFileServer();
             //app.UseDefaultFiles();
+            app.UseNodeModules(env.ContentRootPath);
             //app.UseStaticFiles();
 
             app.UseIdentity();
